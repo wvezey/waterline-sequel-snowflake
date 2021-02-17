@@ -1,11 +1,10 @@
 {
   "name": "waterline-sequel-snowflake",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Waterline sql translator, for use with snowflake-waterline-adapter package.",
   "main": "sequel/index",
   "dependencies": {},
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "test"
   },
