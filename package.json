@@ -1,22 +1,10 @@
 {
-  "name": "@ebaymap/waterline-sequel-snowflake",
+  "name": "waterline-sequel-snowflake",
   "version": "0.1.0",
   "description": "Waterline sql translator, for use with snowflake-waterline-adapter package.",
   "main": "sequel/index",
   "dependencies": {},
   "devDependencies": {
-    "async": "1.5.2",
-    "chai": "3.5.0",
-    "jpath": "0.0.20",
-    "mocha": "2.4.5",
-    "npm": "2.7.4",
-    "sails-mysql": "balderdashy/sails-mysql",
-    "sails-postgresql": "balderdashy/sails-postgresql",
-    "should": "8.2.1",
-    "waterline-adapter-tests": "~0.10.17"
-  },
-  "publishConfig": {
-    "registry": "https://artifactory.corp.ebay.com/artifactory/api/npm/npm-ebaymap/"
   },
   "scripts": {
     "test": "test"
