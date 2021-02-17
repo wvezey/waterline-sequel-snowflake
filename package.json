@@ -1,6 +1,6 @@
 {
   "name": "waterline-sequel-snowflake",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Waterline sql translator, for use with snowflake-waterline-adapter package.",
   "main": "sequel/index",
   "directories": {
@@ -18,7 +18,8 @@
     "sails-mysql": "balderdashy/sails-mysql",
     "sails-postgresql": "balderdashy/sails-postgresql",
     "should": "8.2.1",
-    "waterline-adapter-tests": "~0.10.17"},
+    "waterline-adapter-tests": "~0.10.17"
+  },
   "scripts": {
     "test": "make test",
     "test-integration": "make test-integration"
