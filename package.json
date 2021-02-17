@@ -3,14 +3,29 @@
   "version": "0.1.1",
   "description": "Waterline sql translator, for use with snowflake-waterline-adapter package.",
   "main": "sequel/index",
-  "dependencies": {},
-  "devDependencies": {},
+  "directories": {
+    "sequel": "./sequel"
+  },
+  "dependencies": {
+    "lodash": "3.10.0"
+  },
+  "devDependencies": {
+    "async": "1.5.2",
+    "chai": "3.5.0",
+    "jpath": "0.0.20",
+    "mocha": "2.4.5",
+    "npm": "2.7.4",
+    "sails-mysql": "balderdashy/sails-mysql",
+    "sails-postgresql": "balderdashy/sails-postgresql",
+    "should": "8.2.1",
+    "waterline-adapter-tests": "~0.10.17"},
   "scripts": {
-    "test": "test"
+    "test": "make test",
+    "test-integration": "make test-integration"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wvezey/waterline-sequel-snowflake.git"
+    "url": "git://github.com/wvezey/waterline-sequel-snowflake.git"
   },
   "author": "Bill Vezey",
   "license": "MIT",
