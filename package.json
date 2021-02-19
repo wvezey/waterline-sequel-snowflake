@@ -28,7 +28,7 @@
     "type": "git",
     "url": "git://github.com/wvezey/waterline-sequel-snowflake.git"
   },
-  "author": "Bill Vezey",
+  "author": "Cody Stoltman <particlebanana@gmail.com>, Bill Vezey",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/wvezey/waterline-sequel-snowflake/issues"

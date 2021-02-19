@@ -179,3 +179,7 @@ utils.escapeString = function(value, forLike) {
 utils.toSqlDate = function(date) {
   return date.toUTCString();
 };
+
+utils.wrapCriteria = (value, criteriaWrapper) => {
+  return criteriaWrapper + value + criteriaWrapper;
+}

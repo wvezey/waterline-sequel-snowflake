@@ -44,9 +44,8 @@ var CriteriaProcessor = module.exports = function CriteriaProcessor(currentTable
   this.parameterized = true;
   this.caseSensitive = true;
   this.escapeCharacter = '"';
+  this.criteriaWrapper = "'";
   this.wlNext = {};
-
-  console.log('CriteriaProcessor::constructor', {'this.currentSchema': this.currentSchema})
 
   if(options && utils.object.hasOwnProperty(options, 'parameterized')) {
     this.parameterized = options.parameterized;
@@ -58,6 +57,10 @@ var CriteriaProcessor = module.exports = function CriteriaProcessor(currentTable
 
   if(options && utils.object.hasOwnProperty(options, 'escapeCharacter')) {
     this.escapeCharacter = options.escapeCharacter;
+  }
+
+  if(options && utils.object.hasOwnProperty(options, 'criteriaWrapper')) {
+    this.criteriaWrapper = options.criteriaWrapper;
   }
 
   if(options && utils.object.hasOwnProperty(options, 'paramCount')) {
@@ -250,8 +253,6 @@ CriteriaProcessor.prototype.like = function like(val) {
  */
 
 CriteriaProcessor.prototype.and = function and(key, val) {
-
-  console.log('CriteriaProcessor::and', {key: key}, {val: val}, {'this.currentSchema[key]': this.currentSchema[key]})
 
   var caseSensitive = true;
 
@@ -487,7 +488,7 @@ CriteriaProcessor.prototype.processSimple = function processSimple (tableName, p
   }
 
   if (_.isString(value)) {
-    value = '"' + utils.escapeString(value) +'"';
+    value = utils.wrapCriteria(utils.escapeString(value), this.criteriaWrapper);
   }
 
   this.queryString += parent + ' ' + combinator + ' ' + value;
@@ -625,7 +626,7 @@ CriteriaProcessor.prototype.prepareCriterion = function prepareCriterion(key, va
       }
       else {
         if(_.isString(value) && !escapedDate) {
-          value = '"' + utils.escapeString(value) + '"';
+          value = utils.wrapCriteria(utils.escapeString(value), this.criteriaWrapper);
         }
         str = '< ' + value;
       }
@@ -641,7 +642,7 @@ CriteriaProcessor.prototype.prepareCriterion = function prepareCriterion(key, va
       }
       else {
         if(_.isString(value) && !escapedDate) {
-          value = "'" + utils.escapeString(value) + "'";
+          value = utils.wrapCriteria(utils.escapeString(value), this.criteriaWrapper);
         }
         str = '<= ' + value;
       }
@@ -657,7 +658,7 @@ CriteriaProcessor.prototype.prepareCriterion = function prepareCriterion(key, va
       }
       else {
         if(_.isString(value) && !escapedDate) {
-          value = "'" + utils.escapeString(value) + "'";
+          value = utils.wrapCriteria(utils.escapeString(value), this.criteriaWrapper);
         }
         str = '> ' + value;
       }
@@ -673,7 +674,7 @@ CriteriaProcessor.prototype.prepareCriterion = function prepareCriterion(key, va
       }
       else {
         if(_.isString(value) && !escapedDate) {
-          value = "'" + utils.escapeString(value) + "'";
+          value = utils.wrapCriteria(utils.escapeString(value), this.criteriaWrapper);
         }
         str = '>= ' + value;
       }

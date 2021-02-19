@@ -17,6 +17,8 @@ var utils = require('./lib/utils');
 
 var Sequel = module.exports = function(schema, options) {
 
+  //console.log('Sequel::constructor', {options: options})
+
   // Store the schema values for the database structure
   this.schema = schema || {};
 
@@ -38,6 +40,9 @@ var Sequel = module.exports = function(schema, options) {
 
   // Set the escape character, default is "
   this.escapeCharacter = options && utils.object.hasOwnProperty(options, 'escapeCharacter') ? options.escapeCharacter : '"';
+
+  // Set the character used to wrap values in criteria processing where statements, for all forms of lt, lte, gt, gte.
+  this.criteriaWrapper = options && utils.object.hasOwnProperty(options, 'criteriaWrapper') ? options.criteriaWrapper : "'";
 
   // Set if the database can return values from things such as an insert
   this.canReturnValues = options && utils.object.hasOwnProperty(options, 'canReturnValues') ? options.canReturnValues : false;
@@ -288,12 +293,14 @@ Sequel.prototype.select = function select(currentTable, queryObject) {
  */
 
 Sequel.prototype.simpleWhere = function simpleWhere(currentTable, queryObject, options) {
+
   var _options = {
     parameterized: this.parameterized,
     caseSensitive: this.caseSensitive,
     escapeCharacter: this.escapeCharacter,
     wlNext: this.wlNext,
-    schemaName: this.schemaName
+    schemaName: this.schemaName,
+    criteriaWrapper: this.criteriaWrapper
   };
 
   var where = new WhereBuilder(this.schema, currentTable, _options);
@@ -301,11 +308,13 @@ Sequel.prototype.simpleWhere = function simpleWhere(currentTable, queryObject, o
 };
 
 Sequel.prototype.complexWhere = function complexWhere(currentTable, queryObject, options) {
+
   var _options = {
     parameterized: this.parameterized,
     caseSensitive: this.caseSensitive,
     escapeCharacter: this.escapeCharacter,
-    schemaName: this.schemaName
+    schemaName: this.schemaName,
+    criteriaWrapper: this.criteriaWrapper
   };
 
   var where = new WhereBuilder(this.schema, currentTable, _options);

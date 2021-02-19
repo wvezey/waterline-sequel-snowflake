@@ -64,6 +64,10 @@ var WhereBuilder = module.exports = function WhereBuilder(schema, currentTable, 
     this.escapeCharacter = options.escapeCharacter;
   }
 
+  if(options && hop(options, 'criteriaWrapper')) {
+    this.criteriaWrapper = options.criteriaWrapper;
+  }
+
   // Add support for WL Next features
   if(options && hop(options, 'wlNext')) {
     this.wlNext = options.wlNext;
@@ -82,8 +86,6 @@ var WhereBuilder = module.exports = function WhereBuilder(schema, currentTable, 
  */
 
 WhereBuilder.prototype.single = function single(queryObject, options) {
-
-  //console.log('WhereBuilder', {queryObject: queryObject})
 
   if(!queryObject) return {
 	query: '',
@@ -147,6 +149,7 @@ WhereBuilder.prototype.single = function single(queryObject, options) {
     parameterized: this.parameterized,
     caseSensitive: this.caseSensitive,
     escapeCharacter: this.escapeCharacter,
+    criteriaWrapper: this.criteriaWrapper,
     wlNext: this.wlNext
   }, options);
 
@@ -171,8 +174,6 @@ WhereBuilder.prototype.single = function single(queryObject, options) {
   else {
     values = [];
   }
-
-  //console.log('WhereBuilder; simple', {queryString: queryString})
 
   return {
     query: queryString,
@@ -214,6 +215,7 @@ WhereBuilder.prototype.complex = function complex(queryObject, options) {
         parameterized: self.parameterized,
         caseSensitive: self.caseSensitive,
         escapeCharacter: self.escapeCharacter,
+        criteriaWrapper: self.criteriaWrapper,
         wlNext: self.wlNext
       }, options);
 
@@ -271,6 +273,7 @@ WhereBuilder.prototype.complex = function complex(queryObject, options) {
         parameterized: self.parameterized,
         caseSensitive: self.caseSensitive,
         escapeCharacter: self.escapeCharacter,
+        criteriaWrapper: self.criteriaWrapper,
         wlNext: self.wlNext
       }, options);
 
